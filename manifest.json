@@ -3,6 +3,30 @@
   "name": "UsabilityAI",
   "version": "1.0",
   "description": "Extensión para analisis de HCI",
+  "permissions": ["tabs", "storage", "scripting", "activeTab", "sidePanel"],
+  "host_permissions": ["<all_urls>"],
+  "icons": {
+    "128": "icon.png"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["libs/axe.min.js", "scripts/axe-runner.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -10,12 +34,5 @@
       "48": "icon.png",
       "128": "icon.png"
     }
-  },
-  "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
-  },
-  "permissions": [],
-  "host_permissions": []
+  }
 }

@@ -1,18 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>UsabilityAI</title>
-  <style>
-    body {
-      width: 300px;
-      padding: 10px;
-      font-family: Arial, sans-serif;
-    }
-  </style>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenida</title>
+  <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <h1>UsabilityAI</h1>
-  <p>Extensión activa. Rastreando eventos...</p>
+  <div class="container">
+    <h1 class="title">¡Qué bueno tenerte aquí!</h1>
+    <div class="logo">Logo</div>
+    <p class="description">
+      Analiza, mejora y entiende la experiencia de tus usuarios con ayuda de la IA.
+    </p>
+    <button id="start-button" class="start-button">¡Comencemos!</button>
+
+    <div class="footer">
+      <div class="toggle-container">
+        <span class="moon">🌙</span>
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle" checked />
+          <span class="slider round"></span>
+        </label>
+        <span class="sun">🔆</span>
+      </div>
+      <select class="language-selector">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+        <option value="pt">Português</option>
+        <option value="zh">中文</option>
+        <option value="ja">日本語</option>
+        <option value="ru">Русский</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="result"></div>
+
+  <script src="popup.js"></script>
 </body>
 </html>
