@@ -45,7 +45,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if (!finalUrl) {
               console.error("No se recibió finalUrl");
             } else {
-              sendResponse(finalUrl);
+              sendResponse("ok");
             }
           }
         );

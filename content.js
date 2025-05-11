@@ -80,17 +80,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 );
                 formData.append("screenshot", blob, "screenshot.jpg"); // blob con nombre
 
-                fetch("http://localhost:3000/axeContext/process", {
+                fetch("http://localhost:3000/context/process", {
                   method: "POST",
                   body: formData,
                 })
                   .then((res) => res.json())
                   .then((data) => {
-                    console.log("Datos enviados al backend:", data);
                     sendResponse("ok");
                   })
                   .catch((err) => {
-                    console.error("Error al enviar datos:", err);
                     sendResponse(null);
                   });
               });

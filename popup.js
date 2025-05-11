@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const startButton = document.getElementById("start-button");
   startButton.addEventListener("click", async () => {
+
+  showOverlay("loading");
+
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, { action: "INJECT_AXE" });
     });
@@ -38,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chrome.runtime.sendMessage(
       { action: "START_CAPTURE", tabId: tab.id }, (response) => {
+        console.log(response);
+        showOverlay("success");
         if (response === "ok") {
           console.log("Tarea terminada");
         } else {
@@ -47,3 +52,31 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 });
+
+
+function showOverlay(type) {
+  document.getElementById("loading-screen").classList.add("hidden");
+  document.getElementById("success-screen").classList.add("hidden");
+  document.getElementById("error-screen").classList.add("hidden");
+
+  switch (type) {
+    case "loading":
+      document.getElementById("loading-screen").classList.remove("hidden");
+      break;
+    case "success":
+      document.getElementById("success-screen").classList.remove("hidden");
+      break;
+    case "error":
+      document.getElementById("error-screen").classList.remove("hidden");
+      break;
+  }
+}
+
+function closeOverlay() {
+  showOverlay(""); // Oculta todo
+}
+
+function retry() {
+  closeOverlay();
+  document.getElementById("start-button").click(); // Vuelve a intentar
+}
